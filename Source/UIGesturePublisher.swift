@@ -8,19 +8,19 @@
 import UIKit
 import Combine
 
-struct UIGesturePublisher<Gesture: UIGestureRecognizer>: Publisher {
-    typealias Output = Gesture
-    typealias Failure = Never
+public struct UIGesturePublisher<Gesture: UIGestureRecognizer>: Publisher {
+    public typealias Output = Gesture
+    public typealias Failure = Never
     
     private let view: UIView
     private let configure: (Gesture) -> Void
     
-    init(view: UIView, configure: @escaping (Gesture) -> Void) {
+    public init(view: UIView, configure: @escaping (Gesture) -> Void) {
         self.view = view
         self.configure = configure
     }
     
-    func receive<S>(subscriber: S)
+    public func receive<S>(subscriber: S)
     where S: Subscriber, S.Input == Gesture, S.Failure == Never {
         let subscription = Subscription(
             subscriber: subscriber,
